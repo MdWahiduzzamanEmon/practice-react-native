@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   FlatList,
+  Image,
 } from 'react-native';
 
 const App = () => {
@@ -24,7 +25,13 @@ const App = () => {
       return;
     }
 
-    setTodos([...todos, todo]);
+    setTodos([
+      ...todos,
+      {
+        value: todo.value,
+        todoImage: 'https://picsum.photos/200/300',
+      },
+    ]);
 
     setTodo('');
     setMode('add');
@@ -46,7 +53,13 @@ const App = () => {
       return;
     }
 
-    setTodos([...todos, todo]);
+    setTodos([
+      ...todos,
+      {
+        value: todo.value,
+        todoImage: 'https://picsum.photos/200/300',
+      },
+    ]);
 
     setTodo('');
     setMode('add');
@@ -80,6 +93,12 @@ const App = () => {
   const renderItem = ({item}: any) => {
     return (
       <View style={styles.todoContainer}>
+        <Image
+          style={{width: 200, height: 200}}
+          source={{
+            uri: item?.todoImage,
+          }}
+        />
         <Text style={styles.todoText}>{item?.value}</Text>
         <View style={styles.deleteButtonBox}>
           <Text
