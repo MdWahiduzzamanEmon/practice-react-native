@@ -8,6 +8,8 @@ import {
   View,
   FlatList,
   Image,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 
 const App = () => {
@@ -150,7 +152,10 @@ const App = () => {
           </TouchableOpacity>
         </View>
         {/* //button */}
-        <View>
+        <SafeAreaView
+          style={{
+            flex: 1,
+          }}>
           {/* //todo container */}
 
           <FlatList
@@ -158,8 +163,15 @@ const App = () => {
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
             style={styles.todoList}
+            ListHeaderComponent={<Text style={styles.text}>Todo List</Text>}
+            ListFooterComponent={
+              <Text style={styles.text}>Total Todos: {todos.length}</Text>
+            }
+            onEndReached={() => {
+              console.log('End of List');
+            }}
           />
-        </View>
+        </SafeAreaView>
       </View>
     </>
   );
@@ -171,7 +183,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 10,
+    marginHorizontal: 10,
+    marginTop: StatusBar.currentHeight || 0,
   },
 
   text: {
@@ -199,12 +212,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
-    padding: 10,
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: 'lightblue',
+    marginVertical: 10,
+    // marginHorizontal: 10,
   },
   todoText: {
     fontSize: 18,
