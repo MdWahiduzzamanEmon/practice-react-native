@@ -152,10 +152,7 @@ const App = () => {
           </TouchableOpacity>
         </View>
         {/* //button */}
-        <SafeAreaView
-          style={{
-            flex: 1,
-          }}>
+        <SafeAreaView>
           {/* //todo container */}
 
           <FlatList
